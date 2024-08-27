@@ -8,7 +8,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center gap-[5rem] relative pt-[7rem] bg-[#f8f8f8]">
       <Navbar/>
       <Hero/>
-      <Features/>
+      {/* <Features/> */}
     </main>
   );
 }
