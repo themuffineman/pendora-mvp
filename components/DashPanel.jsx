@@ -14,6 +14,7 @@ const DashPanel = ({setLeads, leads}) => {
       
       socket.addEventListener('open', () => {
         setStatusUpdate('Connection Established');
+        setTimeout(setStatusUpdate('Scraping the web...'), 2000);        
       });
       
       socket.addEventListener('message', event => {
@@ -59,7 +60,8 @@ const DashPanel = ({setLeads, leads}) => {
         body: JSON.stringify({
           service,
           location,
-          pagination: 0
+          pagination: 0,
+          clientId: wsId
         }),
         headers: {
           'x-api-key': 12345
@@ -110,6 +112,10 @@ const DashPanel = ({setLeads, leads}) => {
     });
     
     return csvContent;
+  }
+  function cancelRequest(){
+    fetch(`https://prometheus-kynx.onrender.com/api/cancel-process?clientId=${wsId}`)
+    setStatusUpdate('Aborting...')
   }
   return (
     <div className='w-full pt-10 flex flex-col items-start gap-4'>
