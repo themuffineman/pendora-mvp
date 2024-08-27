@@ -10,7 +10,7 @@ const DashPanel = ({setLeads, leads}) => {
     try {
       e.preventDefault()
       setStatus(true)
-      const socket = new WebSocket('https://prometheus-kynx.onrender.com/api/google-maps');
+      const socket = new WebSocket('wss://prometheus-kynx.onrender.com/api/google-maps');
       
       socket.addEventListener('open', () => {
         setStatusUpdate('Connection Established');
@@ -55,6 +55,7 @@ const DashPanel = ({setLeads, leads}) => {
       })
     }else if(message.type === 'id'){
       setWsId(message.data)
+      console.log('fetching')
       await fetch(`https://prometheus-kynx.onrender.com/api/google-maps`,{
         method: 'POST',
         body: JSON.stringify({
