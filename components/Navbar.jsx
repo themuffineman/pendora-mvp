@@ -9,8 +9,8 @@ const Navbar = () => {
       <Link href={'#features'} className='text-[#606060] hover:text-black text-[12px] hover:bg-[#e4e4e4] rounded-[4px] font-medium tracking-wide p-2 '>Features</Link>
       <Link href={'#pricing'} className='text-[#606060] hover:text-black text-[12px] hover:bg-[#F5F5F5] rounded-[4px] font-medium tracking-wide p-2 '>Pricing</Link>
       <div className='flex gap-2'>
-        <Link href={'/login'} className='px-5 p-2 text-xs text-black bg-white border border-[#e4e3e3] hover:bg-[#FAFAFA] rounded-md'>Login</Link>
-        <Link href={'/sign-up'} className=' px-5 p-2 text-xs text-white bg-black rounded-md'>Get Started</Link>
+        {/* <Link href={'/login'} className='px-5 p-2 text-xs text-black bg-white border border-[#e4e3e3] hover:bg-[#FAFAFA] rounded-md'>Login</Link> */}
+        <Link href={'/dashboard'} className=' px-5 p-2 text-xs text-white bg-black rounded-md'>Try now for free</Link>
       </div>
     </div>
 )
