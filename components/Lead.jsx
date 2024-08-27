@@ -40,11 +40,11 @@ const Lead = ({lead}) => {
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#FFFFFF" viewBox="0 0 256 256"><path d="M176,160a39.89,39.89,0,0,0-28.62,12.09l-46.1-29.63a39.8,39.8,0,0,0,0-28.92l46.1-29.63a40,40,0,1,0-8.66-13.45l-46.1,29.63a40,40,0,1,0,0,55.82l46.1,29.63A40,40,0,1,0,176,160Zm0-128a24,24,0,1,1-24,24A24,24,0,0,1,176,32ZM64,152a24,24,0,1,1,24-24A24,24,0,0,1,64,152Zm112,72a24,24,0,1,1,24-24A24,24,0,0,1,176,224Z"></path></svg>
             </PopoverTrigger>
             <PopoverContent className='bg-neutral-950 p-1 border-neutral-900 w-max flex flex-col'>
-                {lead.twitter && (<a href={lead.twitter} className='p-3 text-white hover:bg-neutral-800 rounded-md w-full h-max cursor-pointer'>Twitter</a>)}
-                {lead.facebook && (<a href={lead.facebook} className='p-3 text-white hover:bg-neutral-800 rounded-md w-full h-max cursor-pointer'>Facebook</a>)}
-                {lead.instagram && (<a href={lead.instgram} className='p-3 text-white hover:bg-neutral-800 rounded-md w-full h-max cursor-pointer'>Instagram</a>)}
-                {lead.linkedin && (<a href={lead.linkedin} className='p-3 text-white hover:bg-neutral-800 rounded-md w-full h-max cursor-pointer'>LinkedIn</a>)}
-                {!lead && <p className="p-3 text-white hover:bg-neutral-800 rounded-md w-max h-max cursor-pointer">No socials found</p>}
+                {lead.socials.twitter && (<a href={lead.socials.twitter} className='p-3 text-white hover:bg-neutral-800 rounded-md w-full h-max cursor-pointer'>Twitter</a>)}
+                {lead.socials.facebook && (<a href={lead.socials.facebook} className='p-3 text-white hover:bg-neutral-800 rounded-md w-full h-max cursor-pointer'>Facebook</a>)}
+                {lead.socials.instagram && (<a href={lead.socials.instgram} className='p-3 text-white hover:bg-neutral-800 rounded-md w-full h-max cursor-pointer'>Instagram</a>)}
+                {lead.socials.linkedin && (<a href={lead.socials.linkedin} className='p-3 text-white hover:bg-neutral-800 rounded-md w-full h-max cursor-pointer'>LinkedIn</a>)}
+                {!lead.socials && <p className="p-3 text-white hover:bg-neutral-800 rounded-md w-max h-max cursor-pointer">No socials found</p>}
             </PopoverContent>
         </Popover>
         <Popover>
@@ -53,7 +53,7 @@ const Lead = ({lead}) => {
                 <p className='text-sm'>Page Speed</p>
             </PopoverTrigger>
             <PopoverContent className='bg-neutral-950 p-1 border-neutral-900 w-max'>
-                <p className='text-sm'>{lead.pageSpeed}</p>
+                <p className='text-sm'>{lead.performance.pageSpeed}</p>
             </PopoverContent>
         </Popover>
         
@@ -63,7 +63,7 @@ const Lead = ({lead}) => {
                 <p className='text-sm'>TTI</p>
             </PopoverTrigger>
             <PopoverContent className='bg-neutral-950 p-1 border-neutral-900 w-max'>
-                <p className='text-sm'>{lead.tti}</p>
+                <p className='text-sm'>{lead.performance.tti}</p>
             </PopoverContent>
         </Popover>
         <Popover>

@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 const DashPanel = ({setLeads, leads}) => {
   const [status, setStatus] = useState(false)
   const [statusUpdate, setStatusUpdate]=useState('')
+  const [service, setService] = useState('')
+  const [location, setLocation] = useState('')
   const [wsId, setWsId]=useState('')
   async function fetchLeads(e){
     try {
       e.preventDefault()
       setStatus(true)
-      const socket = new WebSocket('wss://gmb-scraper-server.onrender.com/api/google-maps');
+      const socket = new WebSocket('https://prometheus-kynx.onrender.com/api/google-maps');
       
       socket.addEventListener('open', () => {
         setStatusUpdate('Connection Established');
@@ -52,7 +54,7 @@ const DashPanel = ({setLeads, leads}) => {
       })
     }else if(message.type === 'id'){
       setWsId(message.data)
-      await fetch(`https://gmb-scraper-server.onrender.com/scrape?service=${service}&location=${location}&pageNumber=${pageCount}&clientId=${wsId}`,{
+      await fetch(`https://prometheus-kynx.onrender.com/api/google-maps?service=${service}&location=${location}&pagination=0&clientId=${wsId}`,{
         headers: {
           'x-api-key': 12345
         }
@@ -108,8 +110,8 @@ const DashPanel = ({setLeads, leads}) => {
         <h2 className='text-3xl font-light tracking-tighter text-black'>Data Extractor</h2>
         <div className='flex w-full items-center justify-between'>
             <form onSubmit={(e)=> fetchLeads(e)} className='flex gap-2'>
-                <input placeholder='Service' className='w-[12rem] pl-2 h-10 rounded-md bg-neutral-200 active:ring active:ring-black ' type="text" required="true" />
-                <input placeholder='Location' className='w-[12rem] pl-2 h-10 rounded-md bg-neutral-200 active:ring active:ring-black ' type="search" required="true" />
+                <input placeholder='Service' onChange={(e)=>{setService(e.target.value)}} className='w-[12rem] pl-2 h-10 rounded-md bg-neutral-200 active:ring active:ring-black ' type="text" required="true" />
+                <input placeholder='Location' onChange={(e)=> {setLocation(e.target.value)}} className='w-[12rem] pl-2 h-10 rounded-md bg-neutral-200 active:ring active:ring-black ' type="search" required="true" />
                 <button type="submit" className='bg-black text-white rounded-md p-2 px-4'>Extract</button>
             </form>
             <div className='flex gap-1 items-center bg-black p-2 px-4 rounded-md hover:cursor-pointer' onClick={()=>{ downloadCSV(leads)}}>
