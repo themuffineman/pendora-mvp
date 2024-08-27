@@ -54,7 +54,13 @@ const DashPanel = ({setLeads, leads}) => {
       })
     }else if(message.type === 'id'){
       setWsId(message.data)
-      await fetch(`https://prometheus-kynx.onrender.com/api/google-maps?service=${service}&location=${location}&pagination=0&clientId=${wsId}`,{
+      await fetch(`https://prometheus-kynx.onrender.com/api/google-maps`,{
+        method: 'POST',
+        body: JSON.stringify({
+          service,
+          location,
+          pagination: 0
+        }),
         headers: {
           'x-api-key': 12345
         }
