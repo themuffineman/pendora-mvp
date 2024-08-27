@@ -115,7 +115,11 @@ const DashPanel = ({setLeads, leads}) => {
     return csvContent;
   }
   function cancelRequest(){
-    fetch(`https://prometheus-kynx.onrender.com/api/cancel-process?clientId=${wsId}`)
+    fetch(`https://prometheus-kynx.onrender.com/api/cancel-process?clientId=${wsId}`,{
+      headers: {
+        'x-api-key': 12345
+      }
+    })
     setStatusUpdate('Aborting...')
   }
   return (
